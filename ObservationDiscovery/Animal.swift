@@ -1,8 +1,8 @@
 //
-//  PlayingWithObservation.swift
+//  Animal.swift
 //  ObservationDiscovery
 //
-//  Created by ynom on 11/15/24.
+//  Created by ynom on 11/16/24.
 //
 
 import Foundation
@@ -14,7 +14,7 @@ class Animal {
         self.species = species
         self.color = color
     }
-    
+
     var species: String
     var color: String
 }

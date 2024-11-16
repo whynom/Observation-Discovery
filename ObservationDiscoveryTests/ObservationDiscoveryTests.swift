@@ -6,11 +6,31 @@
 //
 
 import Testing
+import Observation
+@testable import ObservationDiscovery
 
-struct ObservationDiscoveryTests {
+class ObservationDiscoveryTests {
 
+    /// When the property in the first closure of withObservationTracking changes
+    /// The closure in the second block is executed
     @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+        let tiger = Animal(species:"tiger", color: "orange")
+        var tigerColorChanges = 0
+        
+        withObservationTracking({
+            print("Tiger color: \(tiger.color)")
+        }, onChange: {
+            tigerColorChanges += 1
+        })
+        
+        tiger.color = "blue"
+        
+        #expect(tiger.color == "blue")
+        #expect(tigerColorChanges == 1)
+        
+        /// But only once
+        tiger.color = "green"
+        #expect(tigerColorChanges != 2)
     }
 
 }
